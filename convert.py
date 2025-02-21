@@ -27,6 +27,11 @@ if __name__ == "__main__":
     all_paths = list(sorted(raw_dir.glob("**/*")))
 
     for path in [raw_dir, *all_paths]:
+        if "secret" in path.name:
+            print(f"Skipping {path.name}")
+            continue
+
+        
         doc_path = DocPath(path)
         if doc_path.is_file:
             if doc_path.is_md:
